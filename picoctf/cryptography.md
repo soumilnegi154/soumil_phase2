@@ -87,3 +87,30 @@ picoCTF{su((3ss_(r@ck1ng_r3@_4955eb5d}
 
 
 ***
+
+# 1. Custom encryption
+
+> Can you get sense of this code file and write the function that will decode the given encrypted file content.
+Find the encrypted file here [flag_info](resources/cryptography/customencryption/enc_flag) and [code file](resources/cryptography/customencryption/custom_encryption.py) might be good to analyze and get the flag.
+
+## Solution:
+
+We can use the [python script](resources/cryptography/customencryption/customdecryption.py), made by reverse engineering the code file which gave us
+- text_key (used in dynamic_xor_encrypt) is “trudeau”
+- shared_key (used in encrypt) can be leaked from test
+- The only sources of randomness, a and b in test, are provided in enc_flag
+- The encryption algorithm therefore - 
+![image](resources/cryptography/customencryption/image.png)
+
+## Flag:
+
+```
+picoCTF{custom_d2cr0pt6d_e4530597}
+```
+
+## Resources:
+
+- [https://blog.cbarkr.com/ctf/picoCTF/practice/custom-encryption](https://blog.cbarkr.com/ctf/picoCTF/practice/custom-encryption)
+
+
+***
