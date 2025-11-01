@@ -112,5 +112,31 @@ picoCTF{custom_d2cr0pt6d_e4530597}
 
 - [https://blog.cbarkr.com/ctf/picoCTF/practice/custom-encryption](https://blog.cbarkr.com/ctf/picoCTF/practice/custom-encryption)
 
+***
+
+# 3. miniRSA
+
+> Let's decrypt this: [ciphertext](resources/cryptography/minirsa/ciphertext%20(1))? Something seems a bit small.
+
+## Solution:
+
+Since the `e` is only 3, we can find out the cube root of the number `c = 2205316413931134031074603746928247799030155221252519872650080519263755075355825243327515211479747536697517688468095325517209911688684309894900992899707504087647575997847717180766377832435022794675332132906451858990782325436498952049751141`, which's hexadecimal value can be converted to string to get the flag.
+
+We can use a script like [this](resources/cryptography/minirsa/pythonscript.py) to get the solution which is `0x7069636f4354467b6e3333645f615f6c41726733725f655f64306364366561657d`, which converted to string gives the flag.
+
+## Flag:
+
+```
+picoCTF{n33d_a_lArg3r_e_d0cd6eae}
+```
+
+## Concepts learnt:
+
+- RSA
+
+## Resources:
+
+- [https://en.wikipedia.org/wiki/RSA_cryptosystem](https://en.wikipedia.org/wiki/RSA_cryptosystem)
+
 
 ***
