@@ -7,34 +7,83 @@
 
 ## Solution:
 
-- Include as many steps as you can with your thought process
-- You **must** include images such as screenshots wherever relevant.
+We can decrypt the password using the homomorphic property of RSA, through this [python script](resources/cryptography/rsaoracle/pythonscript.py), which outputs - 
 
+```sh
+┌──(soumil㉿Predator)-[~/picoCTF/rsaoracle]
+└─$ python3 pythonscript.py
+Phase 1: Get password
+
+c = 1634668422544022562287275254811184478161245548888973650857381112077711852144181630709254123963471597994127621183174673720047559236204808750789430675058597
+
+Enter message (m1): a
+Have the oracle encrypt this message (m1): a
+
+Enter ciphertext from oracle (c1 = E(m1)): 1894792376935242028465556366618011019548511575881945413668351305441716829547731248120542989065588556431978903597240454296152579184569578379625520200356186
+
+
+Have the oracle decrypt this message (c2 = c * c1): 3097357265853171086762577146485788014213956517380252195632957286301939282740082358975030469184398860527445348937879783156475536146366758154420391810256611847120173988337373791004871904106220076227501246689936260227532178819705625123684123321350185635500398774070100065478919921540000252731735761585821431042
+
+Enter decrypted ciphertext as HEX (m2 = D(c2): 13c9ad293b45
+
+
+Password (m = m2 / m1): 4955e
+
+--------------------------------------------------
+Phase 2: Decrypt secret.enc
+
+picoCTF{su((3ss_(r@ck1ng_r3@_4955eb5d}
 ```
-put codes & terminal outputs here using triple backticks
 
-you may also use ```python for python codes for example
+when provided the ciphertext of the letter `a` by the oracle, and decrypt the cipher text from the script, `3097357265853171086762577146485788014213956517380252195632957286301939282740082358975030469184398860527445348937879783156475536146366758154420391810256611847120173988337373791004871904106220076227501246689936260227532178819705625123684123321350185635500398774070100065478919921540000252731735761585821431042`.
+
+```sh
+┌──(soumil㉿Predator)-[~]
+└─$ nc titan.picoctf.net 49920
+*****************************************
+****************THE ORACLE***************
+*****************************************
+what should we do for you?
+E --> encrypt D --> decrypt.
+E
+enter text to encrypt (encoded length must be less than keysize): a
+a
+
+encoded cleartext as Hex m: 61
+
+ciphertext (m ^ e mod n) 1894792376935242028465556366618011019548511575881945413668351305441716829547731248120542989065588556431978903597240454296152579184569578379625520200356186
+
+what should we do for you?
+E --> encrypt D --> decrypt.
+D
+Enter text to decrypt: 3097357265853171086762577146485788014213956517380252195632957286301939282740082358975030469184398860527445348937879783156475536146366758154420391810256611847120173988337373791004871904106220076227501246689936260227532178819705625123684123321350185635500398774070100065478919921540000252731735761585821431042
+decrypted ciphertext as hex (c ^ d mod n): 13c9ad293b45
+decrypted ciphertext: É­);E
+
+what should we do for you?
+E --> encrypt D --> decrypt.
 ```
 
 ## Flag:
 
 ```
-picoCTF{}
+picoCTF{su((3ss_(r@ck1ng_r3@_4955eb5d}
 ```
 
 ## Concepts learnt:
 
-- Include the new topics you've come across and explain them in brief
-- 
+- aes-256-cbc encryption
+- homomorphic property of RSA
 
 ## Notes:
 
-- Include any alternate tangents you went on while solving the challenge, including mistakes & other solutions you found.
-- 
+- The homomorphic property of RSA states that -
+![image](resources/cryptography/rsaoracle/image.png)
 
 ## Resources:
 
-- Include the resources you've referred to with links. [example hyperlink](https://google.com)
+- [https://blog.cbarkr.com/ctf/picoCTF/practice/rsa_oracle](https://blog.cbarkr.com/ctf/picoCTF/practice/rsa_oracle)
+- [https://crypto.stackexchange.com/questions/3555/homomorphic-cryptosystems-in-rsa](https://crypto.stackexchange.com/questions/3555/homomorphic-cryptosystems-in-rsa)
 
 
 ***
